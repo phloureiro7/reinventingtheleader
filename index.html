@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinventing the Leader</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
         body {
@@ -256,18 +257,20 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             backdrop-filter: blur(5px);
+            overflow-y: auto;
         }
         
         .modal-content {
             background-color: #e41e26;
             margin: 5% auto;
             padding: 30px;
-            width: 80%;
+            width: 90%;
             max-width: 800px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-height: 90vh;
+            max-height: calc(90vh - 40px);
             overflow-y: auto;
+            border-radius: 6px;
         }
         
         .close-button {
@@ -364,7 +367,7 @@
         /* Retailer Options */
         .retailer-options {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
         }
         
@@ -379,28 +382,32 @@
             align-items: center;
             justify-content: space-between;
             height: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .retailer:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .retailer-logo {
-            height: 60px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            width: 120px;
+            width: 100%;
         }
         
         .retailer-logo img {
-            max-height: 40px;
-            max-width: 100px;
+            max-height: 50px;
+            max-width: 120px;
             object-fit: contain;
+        }
+        
+        .retailer-logo .fa-icon {
+            font-size: 2.5rem;
+            color: #e41e26;
         }
         
         .retailer-link {
@@ -408,11 +415,12 @@
             background-color: #e41e26;
             color: white;
             text-decoration: none;
-            padding: 8px 15px;
+            padding: 8px 20px;
             border-radius: 3px;
             font-size: 0.9rem;
             margin-top: 10px;
             transition: background-color 0.2s;
+            width: 80%;
         }
         
         .retailer-link:hover {
@@ -420,9 +428,17 @@
         }
         
         /* Responsive Styles */
+        @media (max-width: 900px) {
+            #animated-title {
+                font-size: 3.5rem;
+                text-align: center;
+            }
+        }
+        
         @media (max-width: 768px) {
             #animated-title {
-                font-size: 3rem;
+                font-size: 2.8rem;
+                text-align: center;
             }
             
             .authors, .subtitle, .foreword {
@@ -437,13 +453,89 @@
                 position: relative;
                 bottom: auto;
                 left: auto;
-                margin-top: 30px;
+                margin-top: 40px;
+                flex-direction: row;
+                justify-content: center;
             }
             
             .book-cover {
                 display: flex;
                 flex-direction: column;
-                padding-bottom: 80px;
+                padding: 30px 20px 50px;
+                text-align: center;
+            }
+            
+            .testimonial-content {
+                font-size: 1rem;
+            }
+            
+            .testimonials {
+                padding: 40px 20px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+                margin: 10px auto;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .retailer-options {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .retailer {
+                height: 130px;
+                padding: 10px;
+            }
+            
+            .retailer-logo {
+                height: 50px;
+                margin-bottom: 10px;
+            }
+            
+            .retailer-link {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #animated-title {
+                font-size: 2rem;
+            }
+            
+            .author {
+                font-size: 1.2rem;
+            }
+            
+            .author-title {
+                font-size: 0.9rem;
+            }
+            
+            .subtitle p {
+                font-size: 1.2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .action-button {
+                width: 200px;
+            }
+            
+            .country-label {
+                font-size: 1.1rem;
+            }
+            
+            .retailer-options {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -555,35 +647,35 @@
             <div id="us-retailers" class="retailer-options">
                 <div class="retailer">
                     <div class="retailer-logo">
-                        <img src="https://cdn.corporate.walmart.com/dims4/default/7a12286/2147483647/strip/true/crop/855x305+0+0/resize/855x305!/quality/90/?url=https%3A%2F%2Fcdn.corporate.walmart.com%2F13%2F86%2F3ec31e4945b9acb9209cf641a2e9%2Fwalmart-logo.svg" alt="Walmart Logo">
+                        <i class="fa-brands fa-walmart fa-icon"></i>
                     </div>
                     <a href="https://www.walmart.com/ip/Gui-Loureiro-Reinventing-the-Leader-How-to-Change-Yourself-to-Change-Your-Company-Hardcover-9781637746806/13650753417?classType=REGULAR&from=/search" class="retailer-link" target="_blank">Buy at Walmart</a>
                 </div>
             
                 <div class="retailer">
                     <div class="retailer-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo">
+                        <i class="fa-brands fa-amazon fa-icon"></i>
                     </div>
                     <a href="https://www.amazon.com/Reinventing-Leader-Change-Yourself-Company/dp/1637746806/" class="retailer-link" target="_blank">Buy on Amazon</a>
                 </div>
                 
                 <div class="retailer">
                     <div class="retailer-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Barnes_%26_Noble_logo.svg" alt="Barnes & Noble Logo">
+                        <i class="fa-solid fa-book fa-icon"></i>
                     </div>
                     <a href="https://www.barnesandnoble.com/w/reinventing-the-leader-guilherme-loureiro/1142750160" class="retailer-link" target="_blank">Buy at Barnes & Noble</a>
                 </div>
                 
                 <div class="retailer">
                     <div class="retailer-logo">
-                        <img src="https://d23.com/app/uploads/2017/04/1180w-600h_042417_books-a-million-logo.jpg" alt="Books-A-Million Logo">
+                        <i class="fa-solid fa-book-open fa-icon"></i>
                     </div>
                     <a href="https://www.booksamillion.com/p/Reinventing-Leader/Guilherme-Loureiro/9781637746806" class="retailer-link" target="_blank">Buy at BAM!</a>
                 </div>
                 
                 <div class="retailer">
                     <div class="retailer-logo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Kobo_logo.svg" alt="Kobo Logo">
+                        <i class="fa-solid fa-tablet-screen-button fa-icon"></i>
                     </div>
                     <a href="https://www.kobo.com/us/en/ebook/reinventing-the-leader" class="retailer-link" target="_blank">Buy on Kobo</a>
                 </div>
@@ -694,6 +786,13 @@
                 // Show the selected country's retailers
                 const selectedCountry = countrySelect.value;
                 document.getElementById(`${selectedCountry}-retailers`).style.display = 'grid';
+            });
+            
+            // Close modal on escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && purchaseModal.style.display === 'block') {
+                    purchaseModal.style.display = 'none';
+                }
             });
         });
     </script>
