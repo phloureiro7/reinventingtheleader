@@ -198,53 +198,16 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
-        /* Content Sections */
-        .content-sections {
+        /* Testimonials Section */
+        .testimonials {
             background-color: #e41e26;
-            min-height: 60vh;
             padding: 60px 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .testimonials-container,
-        .events-container,
-        .authors-container {
+        .testimonials-container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .section-title {
-            color: white;
-            font-size: 2.2rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.5);
         }
         
         .testimonial {
@@ -287,12 +250,56 @@
             font-style: italic;
         }
         
-        /* Authors Section Styles */
-        .authors-container {
+        /* Content Sections */
+        .content-sections {
+            background-color: #e41e26;
+            min-height: 60vh;
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .authors-container,
+        .events-container {
             max-width: 1200px;
             margin: 0 auto;
         }
         
+        .section-title {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Authors Section Styles */
         .author-profiles {
             display: flex;
             flex-direction: column;
@@ -841,6 +848,14 @@
                 font-size: 1.3rem;
             }
             
+            .testimonial-content {
+                font-size: 1rem;
+            }
+            
+            .testimonials {
+                padding: 40px 20px;
+            }
+            
             .event-card {
                 flex-direction: column;
             }
@@ -963,343 +978,26 @@
             
             <div class="navigation-tabs">
                 <button class="nav-tab primary" data-section="purchase-section">Purchase</button>
-                <button class="nav-tab active" data-section="authors-section">About the Authors</button>
+                <button class="nav-tab" data-section="authors-section">About the Authors</button>
                 <button class="nav-tab" data-section="events-section">Events</button>
             </div>
         </section>
         
-        <!-- Content Sections Container -->
-        <div class="content-sections">
-            <!-- About the Authors Section -->
-            <section id="authors-section" class="content-section active">
-                <div class="authors-container">
-                    <h2 class="section-title">About the Authors</h2>
-                    
-                    <div class="author-profiles">
-                        <div class="author-profile">
-                            <div class="author-image-container">
-                                <div class="author-image gui-placeholder"></div>
-                            </div>
-                            <div class="author-bio">
-                                <h3 class="author-name">Guilherme Loureiro</h3>
-                                <p class="author-title">Regional CEO, Walmex</p>
-                                <div class="author-description">
-                                    <p>Guilherme Loureiro is the regional CEO of Walmex (Walmart Mexico and Central America), where he has led a remarkable business transformation by first transforming his own leadership approach.</p>
-                                    <p>Prior to joining Walmart, Guilherme held executive positions at leading global companies in the consumer goods and retail sectors. His journey of personal and professional transformation has positioned him as a thought leader in modern executive leadership.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="author-profile">
-                            <div class="author-image-container">
-                                <div class="author-image carlos-placeholder"></div>
-                            </div>
-                            <div class="author-bio">
-                                <h3 class="author-name">Carlos E. Marin</h3>
-                                <p class="author-title">Executive Leadership Coach</p>
-                                <div class="author-description">
-                                    <p>Carlos E. Marin is an executive leadership coach with over two decades of experience helping senior executives and their teams achieve transformational results.</p>
-                                    <p>His coaching methodology combines proven psychological principles with practical business acumen to help leaders unlock their potential. Carlos has worked with executives at Fortune 500 companies across multiple industries, helping them navigate change and drive organizational success.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-foreword">
-                        <h3 class="foreword-heading">Foreword by Dr. Marshall Goldsmith</h3>
-                        <p class="foreword-title">Thinkers50 World's #1 Executive Coach</p>
-                        <div class="foreword-excerpt">
-                            <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership transformation that is both deeply personal and broadly applicable. They show that true organizational change begins with personal change—a lesson that every leader needs to embrace."</p>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonials-preview">
-                        <h3 class="testimon<h3 class="testimonials-heading">Praise for <em>Reinventing the Leader</em></h3>
-                        <div class="testimonial">
-                            <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He not only reinvented the Walmex business while also delivering results, but he also reinvented himself as a new kind of leader..."</p>
-                            <p class="testimonial-author">Doug McMilllon</p>
-                            <p class="testimonial-title">President and CEO, Walmart</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Events Section -->
-            <section id="events-section" class="content-section">
-                <div class="events-container">
-                    <h2 class="section-title">Upcoming Events</h2>
-                    
-                    <div class="coming-soon-message">
-                        <p>Our events calendar is currently being updated.</p>
-                        <p>Please check back soon for upcoming book tours and speaking engagements.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Purchase Section - This will be handled by the modal now -->
-            <section id="purchase-section" class="content-section"></section>
-        </div>
-        
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2025 Guilherme Loureiro & Carlos E. Marin. All rights reserved.</p>
-        </footer>
-    </div>
-    
-    <!-- Purchase Modal -->
-    <div id="purchase-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="close-purchase">&times;</span>
-            
-            <div class="country-selection">
-                <label for="country-select" class="country-label">Select your country</label>
-                <div class="country-select-container">
-                    <select id="country-select" class="country-select">
-                        <option value="us" selected>United States</option>
-                        <option value="ca">Canada</option>
-                        <option value="uk">United Kingdom</option>
-                        <option value="au">Australia</option>
-                        <option value="mx">Mexico</option>
-                        <option value="other">Other Countries</option>
-                    </select>
-                    <div class="select-arrow"></div>
-                </div>
-            </div>
-            
-            <div id="us-retailers" class="retailer-options">
-                <div class="retailer">
-                    <div class="retailer-logo">
-                        <span class="retailer-icon walmart-icon">
-                            <i class="fa-solid fa-store fa-icon"></i>
-                        </span>
-                    </div>
-                    <a href="https://www.walmart.com/ip/Gui-Loureiro-Reinventing-the-Leader-How-to-Change-Yourself-to-Change-Your-Company-Hardcover-9781637746806/13650753417?classType=REGULAR&from=/search" class="retailer-link" target="_blank">Buy at Walmart</a>
-                </div>
-            
-                <div class="retailer">
-                    <div class="retailer-logo">
-                        <span class="retailer-icon amazon-icon">
-                            <i class="fa-brands fa-amazon fa-icon"></i>
-                        </span>
-                    </div>
-                    <a href="https://www.amazon.com/Reinventing-Leader-Change-Yourself-Company/dp/1637746806/" class="retailer-link" target="_blank">Buy on Amazon</a>
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He not only reinvented the Walmex business while also delivering results, but he also reinvented himself as a new kind of leader... What I love most about this story is how Gui, with the support of his executive coach Carlos Marin, flipped the view to start from the inside out... He tells this story with the honesty, vulnerability, and humanity that comes from a truly authentic voice. You won't finish this book without sharing my enormous respect for what he accomplished—and how."</p>
+                    <p class="testimonial-author">Doug McMilllon</p>
+                    <p class="testimonial-title">President and CEO, Walmart</p>
                 </div>
                 
-                <div class="retailer">
-                    <div class="retailer-logo">
-                        <span class="retailer-icon bn-icon">
-                            <i class="fa-solid fa-book fa-icon"></i>
-                        </span>
-                    </div>
-                    <a href="https://www.barnesandnoble.com/w/reinventing-the-leader-guilherme-loureiro/1142750160" class="retailer-link" target="_blank">Buy at Barnes & Noble</a>
+                <div class="testimonial">
+                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is an inspiring account of the magic that can happen when a leader realizes they must undergo their own transformation in order to transform their organization. Entertaining and relevant, the book includes personal insights from both authors while showing the pivotal role that trust plays in the leader/coach relationship. Gui and Carlos have written an honest, vulnerable, and praiseworthy book that should be in the library of every leader and coach."</p>
+                    <p class="testimonial-author">Ken Blanchard</p>
+                    <p class="testimonial-title">Bestselling Coauthor, The One Minute Manager and Simple Truths of Leadership</p>
                 </div>
                 
-                <div class="retailer">
-                    <div class="retailer-logo">
-                        <span class="retailer-icon bam-icon">
-                            <i class="fa-solid fa-book-open fa-icon"></i>
-                        </span>
-                    </div>
-                    <a href="https://www.booksamillion.com/p/Reinventing-Leader/Guilherme-Loureiro/9781637746806" class="retailer-link" target="_blank">Buy at BAM!</a>
-                </div>
-                
-                <div class="retailer">
-                    <div class="retailer-logo">
-                        <span class="retailer-icon kobo-icon">
-                            <i class="fa-solid fa-tablet-screen-button fa-icon"></i>
-                        </span>
-                    </div>
-                    <a href="https://www.kobo.com/us/en/ebook/reinventing-the-leader" class="retailer-link" target="_blank">Buy on Kobo</a>
-                </div>
-            </div>
-            
-            <div id="ca-retailers" class="retailer-options" style="display: none;">
-                <!-- Placeholder for Canadian retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">Canadian retailers coming soon!</p>
-            </div>
-            
-            <div id="uk-retailers" class="retailer-options" style="display: none;">
-                <!-- Placeholder for UK retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">UK retailers coming soon!</p>
-            </div>
-            
-            <div id="au-retailers" class="retailer-options" style="display: none;">
-                <!-- Placeholder for Australian retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">Australian retailers coming soon!</p>
-            </div>
-            
-            <div id="mx-retailers" class="retailer-options" style="display: none;">
-                <!-- Placeholder for Mexican retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">Mexican retailers coming soon!</p>
-            </div>
-            
-            <div id="other-retailers" class="retailer-options" style="display: none;">
-                <!-- Placeholder for Other Countries retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">International retailers coming soon!</p>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get elements
-            const titleElement = document.getElementById('animated-title');
-            const progressBar = document.getElementById('progress-bar');
-            const progressIndicator = document.getElementById('progress-indicator');
-            const splashScreen = document.getElementById('splash-screen');
-            const mainContent = document.getElementById('main-content');
-            
-            // Navigation and content sections
-            const navTabs = document.querySelectorAll('.nav-tab');
-            const contentSections = document.querySelectorAll('.content-section');
-            
-            // Purchase modal elements
-            const purchaseModal = document.getElementById('purchase-modal');
-            const closeBtn = document.getElementById('close-purchase');
-            const countrySelect = document.getElementById('country-select');
-            
-            const text = "Reinventing the Leader";
-            
-            // Clear any existing content in title element
-            if (titleElement) {
-                titleElement.innerHTML = '';
-                
-                // Show progress bar
-                setTimeout(() => {
-                    if (progressBar) progressBar.style.opacity = 1;
-                }, 500);
-                
-                // Start typing animation
-                let i = 0;
-                function typeWriter() {
-                    if (i < text.length) {
-                        titleElement.innerHTML += text.charAt(i);
-                        i++;
-                        
-                        // Update progress bar
-                        if (progressIndicator) {
-                            const progress = (i / text.length) * 100;
-                            progressIndicator.style.width = progress + '%';
-                        }
-                        
-                        setTimeout(typeWriter, 150);
-                    } else {
-                        // Animation complete - wait a moment before transition
-                        setTimeout(() => {
-                            // Hide splash screen with animation
-                            if (splashScreen) splashScreen.classList.add('hide-splash');
-                            
-                            // Show main content with fade-in
-                            if (mainContent) {
-                                mainContent.style.display = 'block';
-                                setTimeout(() => {
-                                    mainContent.classList.add('visible');
-                                }, 50);
-                            }
-                            
-                            // Set authors section as the active section
-                            const authorsSection = document.getElementById('authors-section');
-                            if (authorsSection) authorsSection.classList.add('active');
-                        }, 500);
-                    }
-                }
-                
-                // Start typing animation
-                setTimeout(typeWriter, 500);
-            }
-            
-            // Tab Navigation
-            if (navTabs) {
-                navTabs.forEach(tab => {
-                    tab.addEventListener('click', function() {
-                        const targetSection = this.getAttribute('data-section');
-                        
-                        // If Purchase tab is clicked, open the modal
-                        if (targetSection === 'purchase-section' && purchaseModal) {
-                            purchaseModal.style.display = 'block';
-                            return;
-                        }
-                        
-                        // Remove active class from all tabs and add to clicked tab
-                        navTabs.forEach(t => t.classList.remove('active'));
-                        this.classList.add('active');
-                        
-                        // Hide all content sections and show the target section
-                        if (contentSections) {
-                            contentSections.forEach(section => {
-                                section.classList.remove('active');
-                            });
-                            
-                            const targetSectionElement = document.getElementById(targetSection);
-                            if (targetSectionElement) {
-                                targetSectionElement.classList.add('active');
-                            }
-                        }
-                        
-                        // Scroll to top of the content section
-                        const contentSectionsContainer = document.querySelector('.content-sections');
-                        if (contentSectionsContainer) {
-                            contentSectionsContainer.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                });
-            }
-            
-            // Purchase Modal Functionality
-            
-            // Find primary nav tab (purchase button)
-            const purchaseBtn = document.querySelector('.nav-tab.primary');
-            if (purchaseBtn && purchaseModal) {
-                // Open purchase modal when Purchase button is clicked
-                purchaseBtn.addEventListener('click', function() {
-                    purchaseModal.style.display = 'block';
-                });
-            }
-            
-            // Close purchase modal when X is clicked
-            if (closeBtn && purchaseModal) {
-                closeBtn.addEventListener('click', function() {
-                    purchaseModal.style.display = 'none';
-                });
-            }
-            
-            // Close purchase modal when clicking outside the modal content
-            if (purchaseModal) {
-                window.addEventListener('click', function(event) {
-                    if (event.target === purchaseModal) {
-                        purchaseModal.style.display = 'none';
-                    }
-                });
-            }
-            
-            // Handle country selection change
-            if (countrySelect) {
-                countrySelect.addEventListener('change', function() {
-                    // Hide all retailer sections
-                    document.querySelectorAll('.retailer-options').forEach(section => {
-                        section.style.display = 'none';
-                    });
-                    
-                    // Show the selected country's retailers
-                    const selectedCountry = countrySelect.value;
-                    const retailersSection = document.getElementById(`${selectedCountry}-retailers`);
-                    if (retailersSection) {
-                        retailersSection.style.display = 'grid';
-                    }
-                });
-            }
-            
-            // Close modal on escape key
-            if (purchaseModal) {
-                document.addEventListener('keydown', function(event) {
-                    if (event.key === 'Escape' && purchaseModal.style.display === 'block') {
-                        purchaseModal.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                <div class="testimonial">
+                    <p class="testimonial-content">"Written with welcome clarity, this business narrative grabs you from the first page. Highly recommended for leaders and for coaches."</p>
+                    <p class="testimonial-author">Sally Helgesen
