@@ -198,6 +198,47 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
+        /* Content Modal - For all non-purchase tabs */
+        .content-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+        }
+        
+        .content-modal-inner {
+            background-color: #e41e26;
+            margin: 5% auto;
+            padding: 40px;
+            width: 90%;
+            max-width: 1000px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-height: calc(90vh - 40px);
+            overflow-y: auto;
+            border-radius: 0;
+        }
+        
+        .content-close-button {
+            color: white;
+            float: right;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: -15px;
+            margin-right: -15px;
+        }
+        
+        .content-close-button:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
         /* Testimonials Section */
         .testimonials {
             background-color: #e41e26;
@@ -251,32 +292,13 @@
         }
         
         /* Content Sections */
-        .content-sections {
-            background-color: #e41e26;
-            min-height: 60vh;
-            padding: 60px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            display: none;
-        }
-        
         .content-section {
-            display: none;
             animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        .content-section.active {
-            display: block;
         }
         
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-        
-        .authors-container,
-        .events-container {
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .section-title {
@@ -298,7 +320,7 @@
             height: 3px;
             background-color: rgba(255, 255, 255, 0.5);
         }
-        
+
         /* Authors Section Styles */
         .author-profiles {
             display: flex;
@@ -331,21 +353,9 @@
             background-size: cover;
         }
         
-        .gui-placeholder {
-            background-color: rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-        
-        .gui-placeholder::after {
-            content: '\f007';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.5);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .gui-photo {
+            background-image: url('data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAePBeGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeC8NiAqMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMF4bEBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB48NiAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4bMBUYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYNmAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbYBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtgFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG2AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbUBUYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYNoAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbQBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtAFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbQBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtQFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtAFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbUBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbEBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbMBUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGxAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbMBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsgFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGyAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbMBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABswFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbIBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtQFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbQBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtAFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG0AWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1AVAAAAAAAAAAAAAAAAA//Z');
+            background-position: top center;
         }
         
         .carlos-placeholder {
@@ -417,16 +427,6 @@
             line-height: 1.5;
         }
         
-        .testimonials-preview {
-            margin-top: 30px;
-        }
-        
-        .testimonials-heading {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-        
         .coming-soon-message {
             text-align: center;
             padding: 60px 20px;
@@ -439,6 +439,39 @@
             font-size: 1.2rem;
             margin: 10px 0;
             opacity: 0.9;
+        }
+        
+        /* Barcode */
+        .barcode-
+/* Barcode */
+        .barcode-section {
+            text-align: center;
+            margin: 40px auto;
+            padding: 20px;
+            max-width: 400px;
+        }
+        
+        .barcode-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+            background-color: white;
+            padding: 10px;
+        }
+        
+        .book-price {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .book-isbn {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            opacity: 0.8;
         }
         
         /* Events Section Styles */
@@ -817,8 +850,12 @@
                 text-align: center;
             }
             
-            .content-sections {
-                padding: 30px 20px;
+            .content-modal-inner {
+                padding: 20px;
+                width: 95%;
+                max-width: none;
+                margin: 10px auto;
+                max-height: 85vh;
             }
             
             .section-title {
@@ -937,6 +974,14 @@
             .retailer-options {
                 grid-template-columns: 1fr;
             }
+            
+            .testimonial-author {
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-title {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -1000,7 +1045,7 @@
                 
                 <div class="testimonial">
                     <p class="testimonial-content">"Written with welcome clarity, this business narrative grabs you from the first page. Highly recommended for leaders and for coaches."</p>
-                    <p class="testimonial-author">Sally Helgesenp</p>
+                    <p class="testimonial-author">Sally Helgesen</p>
                     <p class="testimonial-title">Author, How Women Rise, Rising Together, and The Female Advantage</p>
                 </div>
                 
@@ -1015,76 +1060,83 @@
                     <p class="testimonial-author">John Alexander</p>
                     <p class="testimonial-title">President, Leadership Horizons, and former President and CEO, Center for Creative Leadership</p>
                 </div>
+                
+                <div class="barcode-section">
+                    <div class="book-price">US $32.00 / $43.00 CAN</div>
+                    <div class="book-isbn">ISBN: 978-1-637746-80-6</div>
+                    <img src="data:image/png;base64,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
+<img class="barcode-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARYAAABXCAIAAADUiWVPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEgAACxIB0t1+/AAAA71JREFUeF7tnM1rXVUUxc94m0GFahUxk9apdFCloEUQpIJaJehEcVSoHdWZIJ3USRUkYIf+BxJFMCAiEkG0Mx/SQW0nfaqDYhurQqvSxlJrY6NcWdcHJSZvv3322XufH4vJqYT7BmfnnLN8Z+dNGBgYSIwxPjqMJ93Ks66lK0Z2Xeuyq/8yc/oNVx0NV9j97X2oQQ3XBP+FnXbYt+8M9X5lh9ULO63yx0FU7d0b3vho19fXuupHqPb4xk/VQi5y/sbP61XUU4/6/nroGU0UDf+FnXbYt+8M9X5lh9ULO63vH1g0jf/OzxffWRi+cPrUkTfuoLruRtcpVNVU1SfH3rq0b2f1z0tnFp9A3Xd3N59GHeu6hdp3VzfvRK1+4tqBF/vUzn+hj+fgY9++M1T5lR04rbWwkyp8FEV90oCO6o0Hjl49tmfmyulXtiweeXPo0sl33v8PVdQXR56/9Pqe+UsrJz+aRB199cNf9j4zt3N78bWRK+OfP4wa/6Tb6PpUB61T9XtQe+5pNl5G7bitoYPqi3a9hF2wZsHHvn1nqPIrO3BabeGnhU8bVvPxdx+eTXBGKzpZRd3v7kGtFXKx4y68YUUlXSejgmfYvjNU+ZUdOK22sNMqfNSPqrKuE6jVKY00QYNlcRbXv96Jqi7NTL96fHP93JsoCxsf3LT59Zkz6ODouesjz6FO7r/5DGp4c/0c6uTY5rn9W96fPvg2yuwDz7cYqZbvQ99Hs+BH6a/sTFC9iVAd2YmqSFkpN2vxDWGjamXVUu2hTm4Pvj+3NNfntz+H3U/+iGpq4QFUdeQIKql5fjnwXP9/GKlzWc70XHwsxD7ODZ8Z6vxKDpzWYJlGKzVR1VmJVfW4umZRB+/nVFrFpM5d1GJR/+OL+x6tPuK/3L4DtbiU/Q11xD3A/4eRbi7b1nGQfJwbPjPU+ZUcOK22oDUXqRMVDRbXN7euLn2G+vK7lS+G2vOf7Z3+dm7/m+jgxXrvK9SRkXs/uYVq6tQj1T/NV9/G+HL0MVSXjTcn3hppHm9O3jVV9dAno4NdNJq1KQ/3YPf65xKqdLs5GQVfnxt+M1T6lR04rcEyjVbUVmRWVVSiyqOa6lfVYaP+xZWrM9Or5z5H7XvyY9TZ8btmUAfnq1Wo9fk7Pj+4evb0x+hgpL5Vb1OoNmbU//PLx1Bl1WGpDtpK1E6XifJDNWChZuBz3/CdodKv5MBprYadVOkjAAAAaSOMMd4MI0kQBP8DQVUPYSYZaKUAAAAASUVORK5CYII=" alt="Barcode">
+                </div>
             </div>
         </section>
-        
-        <!-- Content Sections (Hidden until tab clicked) -->
-        <div class="content-sections" id="content-sections">
-            <!-- About the Authors Section -->
-            <section id="authors-section" class="content-section">
-                <div class="authors-container">
-                    <h2 class="section-title">About the Authors</h2>
-                    
-                    <div class="author-profiles">
-                        <div class="author-profile">
-                            <div class="author-image-container">
-                                <div class="author-image gui-placeholder"></div>
-                            </div>
-                            <div class="author-bio">
-                                <h3 class="author-name">Guilherme Loureiro</h3>
-                                <p class="author-title">Regional CEO, Walmex</p>
-                                <div class="author-description">
-                                    <p>Guilherme Loureiro is the regional CEO of Walmex (Walmart Mexico and Central America), where he has led a remarkable business transformation by first transforming his own leadership approach.</p>
-                                    <p>Prior to joining Walmart, Guilherme held executive positions at leading global companies in the consumer goods and retail sectors. His journey of personal and professional transformation has positioned him as a thought leader in modern executive leadership.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="author-profile">
-                            <div class="author-image-container">
-                                <div class="author-image carlos-placeholder"></div>
-                            </div>
-                            <div class="author-bio">
-                                <h3 class="author-name">Carlos E. Marin</h3>
-                                <p class="author-title">Executive Leadership Coach</p>
-                                <div class="author-description">
-                                    <p>Carlos E. Marin is an executive leadership coach with over two decades of experience helping senior executives and their teams achieve transformational results.</p>
-                                    <p>His coaching methodology combines proven psychological principles with practical business acumen to help leaders unlock their potential. Carlos has worked with executives at Fortune 500 companies across multiple industries, helping them navigate change and drive organizational success.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-foreword">
-                        <h3 class="foreword-heading">Foreword by Dr. Marshall Goldsmith</h3>
-                        <p class="foreword-title">Thinkers50 World's #1 Executive Coach</p>
-                        <div class="foreword-excerpt">
-                            <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership transformation that is both deeply personal and broadly applicable. They show that true organizational change begins with personal change—a lesson that every leader needs to embrace."</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Events Section -->
-            <section id="events-section" class="content-section">
-                <div class="events-container">
-                    <h2 class="section-title">Upcoming Events</h2>
-                    
-                    <div class="coming-soon-message">
-                        <p>Our events calendar is currently being updated.</p>
-                        <p>Please check back soon for upcoming book tours and speaking engagements.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Purchase Section - This will be handled by the modal now -->
-            <section id="purchase-section" class="content-section"></section>
-        </div>
         
         <!-- Footer -->
         <footer>
             <p>&copy; 2025 Guilherme Loureiro & Carlos E. Marin. All rights reserved.</p>
         </footer>
+    </div>
+    
+    <!-- Content Modal for Authors section -->
+    <div id="authors-modal" class="content-modal">
+        <div class="content-modal-inner">
+            <span class="content-close-button" id="close-authors">&times;</span>
+            <div class="content-section" id="authors-section">
+                <h2 class="section-title">About the Authors</h2>
+                
+                <div class="author-profiles">
+                    <div class="author-profile">
+                        <div class="author-image-container">
+                            <div class="author-image gui-photo"></div>
+                        </div>
+                        <div class="author-bio">
+                            <h3 class="author-name">Guilherme Loureiro</h3>
+                            <p class="author-title">Regional CEO, Walmex</p>
+                            <div class="author-description">
+                                <p>Guilherme Loureiro is the regional CEO of Walmex (Walmart Mexico and Central America), where he has led a remarkable business transformation by first transforming his own leadership approach.</p>
+                                <p>Prior to joining Walmart, Guilherme held executive positions at leading global companies in the consumer goods and retail sectors. His journey of personal and professional transformation has positioned him as a thought leader in modern executive leadership.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="author-profile">
+                        <div class="author-image-container">
+                            <div class="author-image carlos-placeholder"></div>
+                        </div>
+                        <div class="author-bio">
+                            <h3 class="author-name">Carlos E. Marin</h3>
+                            <p class="author-title">Executive Leadership Coach</p>
+                            <div class="author-description">
+                                <p>Carlos E. Marin is an executive leadership coach with over two decades of experience helping senior executives and their teams achieve transformational results.</p>
+                                <p>His coaching methodology combines proven psychological principles with practical business acumen to help leaders unlock their potential. Carlos has worked with executives at Fortune 500 companies across multiple industries, helping them navigate change and drive organizational success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-foreword">
+                    <h3 class="foreword-heading">Foreword by Dr. Marshall Goldsmith</h3>
+                    <p class="foreword-title">Thinkers50 World's #1 Executive Coach</p>
+                    <div class="foreword-excerpt">
+                        <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership transformation that is both deeply personal and broadly applicable. They show that true organizational change begins with personal change—a lesson that every leader needs to embrace."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Content Modal for Events section -->
+    <div id="events-modal" class="content-modal">
+        <div class="content-modal-inner">
+            <span class="content-close-button" id="close-events">&times;</span>
+            <div class="content-section" id="events-section">
+                <h2 class="section-title">Upcoming Events</h2>
+                
+                <div class="coming-soon-message">
+                    <p>Our events calendar is currently being updated.</p>
+                    <p>Please check back soon for upcoming book tours and speaking engagements.</p>
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Purchase Modal -->
@@ -1189,15 +1241,21 @@
             const progressIndicator = document.getElementById('progress-indicator');
             const splashScreen = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
-            const contentSections = document.getElementById('content-sections');
             
             // Navigation and content sections
             const navTabs = document.querySelectorAll('.nav-tab');
-            const sections = document.querySelectorAll('.content-section');
             
-            // Purchase modal elements
+            // Modal elements
             const purchaseModal = document.getElementById('purchase-modal');
-            const closeBtn = document.getElementById('close-purchase');
+            const authorsModal = document.getElementById('authors-modal');
+            const eventsModal = document.getElementById('events-modal');
+            
+            // Close buttons
+            const closePurchase = document.getElementById('close-purchase');
+            const closeAuthors = document.getElementById('close-authors');
+            const closeEvents = document.getElementById('close-events');
+            
+            // Country select
             const countrySelect = document.getElementById('country-select');
             
             const text = "Reinventing the Leader";
@@ -1252,64 +1310,80 @@
                     tab.addEventListener('click', function() {
                         const targetSection = this.getAttribute('data-section');
                         
-                        // If Purchase tab is clicked, open the modal
-                        if (targetSection === 'purchase-section' && purchaseModal) {
-                            purchaseModal.style.display = 'block';
-                            return;
-                        }
-                        
-                        // Show the content sections container
-                        if (contentSections) {
-                            contentSections.style.display = 'block';
-                            
-                            // Scroll to the content sections
-                            contentSections.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        }
-                        
                         // Remove active class from all tabs and add to clicked tab
                         navTabs.forEach(t => t.classList.remove('active'));
                         this.classList.add('active');
                         
-                        // Hide all content sections and show the target section
-                        if (sections) {
-                            sections.forEach(section => {
-                                section.classList.remove('active');
-                            });
-                            
-                            const targetSectionElement = document.getElementById(targetSection);
-                            if (targetSectionElement) {
-                                targetSectionElement.classList.add('active');
-                            }
+                        // Open appropriate modal based on section
+                        if (targetSection === 'purchase-section' && purchaseModal) {
+                            purchaseModal.style.display = 'block';
+                        } else if (targetSection === 'authors-section' && authorsModal) {
+                            authorsModal.style.display = 'block';
+                        } else if (targetSection === 'events-section' && eventsModal) {
+                            eventsModal.style.display = 'block';
                         }
                     });
                 });
             }
             
-            // Purchase Modal Functionality
-            
-            // Find primary nav tab (purchase button)
-            const purchaseBtn = document.querySelector('.nav-tab.primary');
-            if (purchaseBtn && purchaseModal) {
-                // Open purchase modal when Purchase button is clicked
-                purchaseBtn.addEventListener('click', function() {
-                    purchaseModal.style.display = 'block';
-                });
-            }
-            
-            // Close purchase modal when X is clicked
-            if (closeBtn && purchaseModal) {
-                closeBtn.addEventListener('click', function() {
+            // Close modals when X is clicked
+            if (closePurchase && purchaseModal) {
+                closePurchase.addEventListener('click', function() {
                     purchaseModal.style.display = 'none';
+                    
+                    // Reset tab active state
+                    navTabs.forEach(t => {
+                        if (t.getAttribute('data-section') !== 'purchase-section') {
+                            t.classList.remove('active');
+                        }
+                    });
                 });
             }
             
-            // Close purchase modal when clicking outside the modal content
-            if (purchaseModal) {
-                window.addEventListener('click', function(event) {
-                    if (event.target === purchaseModal) {
-                        purchaseModal.style.display = 'none';
+            if (closeAuthors && authorsModal) {
+                closeAuthors.addEventListener('click', function() {
+                    authorsModal.style.display = 'none';
+                    
+                    // Reset tab active state
+                    navTabs.forEach(t => {
+                        if (t.getAttribute('data-section') !== 'authors-section') {
+                            t.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            
+            if (closeEvents && eventsModal) {
+                closeEvents.addEventListener('click', function() {
+                    eventsModal.style.display = 'none';
+                    
+                    // Reset tab active state
+                    navTabs.forEach(t => {
+                        if (t.getAttribute('data-section') !== 'events-section') {
+                            t.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            
+            // Close modals when clicking outside the modal content
+            window.addEventListener('click', function(event) {
+                if (event.target === purchaseModal) {
+                    purchaseModal.style.display = 'none';
+                    resetActiveTab('purchase-section');
+                } else if (event.target === authorsModal) {
+                    authorsModal.style.display = 'none';
+                    resetActiveTab('authors-section');
+                } else if (event.target === eventsModal) {
+                    eventsModal.style.display = 'none';
+                    resetActiveTab('events-section');
+                }
+            });
+            
+            function resetActiveTab(sectionId) {
+                navTabs.forEach(t => {
+                    if (t.getAttribute('data-section') === sectionId) {
+                        t.classList.remove('active');
                     }
                 });
             }
@@ -1332,13 +1406,20 @@
             }
             
             // Close modal on escape key
-            if (purchaseModal) {
-                document.addEventListener('keydown', function(event) {
-                    if (event.key === 'Escape' && purchaseModal.style.display === 'block') {
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    if (purchaseModal && purchaseModal.style.display === 'block') {
                         purchaseModal.style.display = 'none';
+                        resetActiveTab('purchase-section');
+                    } else if (authorsModal && authorsModal.style.display === 'block') {
+                        authorsModal.style.display = 'none';
+                        resetActiveTab('authors-section');
+                    } else if (eventsModal && eventsModal.style.display === 'block') {
+                        eventsModal.style.display = 'none';
+                        resetActiveTab('events-section');
                     }
-                });
-            }
+                }
+            });
         });
     </script>
 </body>
