@@ -198,53 +198,16 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
-        /* Content Sections */
-        .content-sections {
+        /* Testimonials Section */
+        .testimonials {
             background-color: #e41e26;
-            min-height: 60vh;
             padding: 60px 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .testimonials-container,
-        .events-container,
-        .authors-container {
+        .testimonials-container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .section-title {
-            color: white;
-            font-size: 2.2rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.5);
         }
         
         .testimonial {
@@ -287,12 +250,56 @@
             font-style: italic;
         }
         
-        /* Authors Section Styles */
-        .authors-container {
+        /* Content Sections */
+        .content-sections {
+            background-color: #e41e26;
+            min-height: 60vh;
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .authors-container,
+        .events-container {
             max-width: 1200px;
             margin: 0 auto;
         }
         
+        .section-title {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Authors Section Styles */
         .author-profiles {
             display: flex;
             flex-direction: column;
@@ -841,6 +848,14 @@
                 font-size: 1.3rem;
             }
             
+            .testimonial-content {
+                font-size: 1rem;
+            }
+            
+            .testimonials {
+                padding: 40px 20px;
+            }
+            
             .event-card {
                 flex-direction: column;
             }
@@ -963,15 +978,50 @@
             
             <div class="navigation-tabs">
                 <button class="nav-tab primary" data-section="purchase-section">Purchase</button>
-                <button class="nav-tab active" data-section="authors-section">About the Authors</button>
+                <button class="nav-tab" data-section="authors-section">About the Authors</button>
                 <button class="nav-tab" data-section="events-section">Events</button>
             </div>
         </section>
         
-        <!-- Content Sections Container -->
-        <div class="content-sections">
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He not only reinvented the Walmex business while also delivering results, but he also reinvented himself as a new kind of leader... What I love most about this story is how Gui, with the support of his executive coach Carlos Marin, flipped the view to start from the inside out... He tells this story with the honesty, vulnerability, and humanity that comes from a truly authentic voice. You won't finish this book without sharing my enormous respect for what he accomplished—and how."</p>
+                    <p class="testimonial-author">Doug McMilllon</p>
+                    <p class="testimonial-title">President and CEO, Walmart</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is an inspiring account of the magic that can happen when a leader realizes they must undergo their own transformation in order to transform their organization. Entertaining and relevant, the book includes personal insights from both authors while showing the pivotal role that trust plays in the leader/coach relationship. Gui and Carlos have written an honest, vulnerable, and praiseworthy book that should be in the library of every leader and coach."</p>
+                    <p class="testimonial-author">Ken Blanchard</p>
+                    <p class="testimonial-title">Bestselling Coauthor, The One Minute Manager and Simple Truths of Leadership</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-content">"Written with welcome clarity, this business narrative grabs you from the first page. Highly recommended for leaders and for coaches."</p>
+                    <p class="testimonial-author">Sally Helgesenp</p>
+                    <p class="testimonial-title">Author, How Women Rise, Rising Together, and The Female Advantage</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-content">"A master class in leader growth and learning. It's a unique, behind-the-scenes look into one leader's efforts to transform a business and a coach's reflections on leader reinvention. With vulnerability, humility, and transparency, Gui Loureiro and Carlos Marin reveal workplace change through two distinct perspectives—the leader's and the coach's—enabling the reader to appreciate how the leader/coach partnership works."</p>
+                    <p class="testimonial-author">Jim Kouzes</p>
+                    <p class="testimonial-title">Bestselling Coauthor, The Leadership Challenge, and Fellow, Dean Institute for New Leaders, Rice University</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is among the most compelling business leadership books I've read in a long time. It's exceedingly rare when both the dynamic CEO of a huge, iconic retail business and his seasoned executive coach tell all about the dreams and fears they shared before, during, and after a major transformation of the business, which had to succeed and from which there was no turning back... In these turbulent times, I can't imagine more relevant reading for all current and aspiring leaders!"</p>
+                    <p class="testimonial-author">John Alexander</p>
+                    <p class="testimonial-title">President, Leadership Horizons, and former President and CEO, Center for Creative Leadership</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Content Sections (Hidden until tab clicked) -->
+        <div class="content-sections" id="content-sections">
             <!-- About the Authors Section -->
-            <section id="authors-section" class="content-section active">
+            <section id="authors-section" class="content-section">
                 <div class="authors-container">
                     <h2 class="section-title">About the Authors</h2>
                     
@@ -1010,15 +1060,6 @@
                         <p class="foreword-title">Thinkers50 World's #1 Executive Coach</p>
                         <div class="foreword-excerpt">
                             <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership transformation that is both deeply personal and broadly applicable. They show that true organizational change begins with personal change—a lesson that every leader needs to embrace."</p>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonials-preview">
-                        <h3 class="testimon<h3 class="testimonials-heading">Praise for <em>Reinventing the Leader</em></h3>
-                        <div class="testimonial">
-                            <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He not only reinvented the Walmex business while also delivering results, but he also reinvented himself as a new kind of leader..."</p>
-                            <p class="testimonial-author">Doug McMilllon</p>
-                            <p class="testimonial-title">President and CEO, Walmart</p>
                         </div>
                     </div>
                 </div>
@@ -1148,10 +1189,11 @@
             const progressIndicator = document.getElementById('progress-indicator');
             const splashScreen = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
+            const contentSections = document.getElementById('content-sections');
             
             // Navigation and content sections
             const navTabs = document.querySelectorAll('.nav-tab');
-            const contentSections = document.querySelectorAll('.content-section');
+            const sections = document.querySelectorAll('.content-section');
             
             // Purchase modal elements
             const purchaseModal = document.getElementById('purchase-modal');
@@ -1196,10 +1238,6 @@
                                     mainContent.classList.add('visible');
                                 }, 50);
                             }
-                            
-                            // Set authors section as the active section
-                            const authorsSection = document.getElementById('authors-section');
-                            if (authorsSection) authorsSection.classList.add('active');
                         }, 500);
                     }
                 }
@@ -1220,13 +1258,23 @@
                             return;
                         }
                         
+                        // Show the content sections container
+                        if (contentSections) {
+                            contentSections.style.display = 'block';
+                            
+                            // Scroll to the content sections
+                            contentSections.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                        
                         // Remove active class from all tabs and add to clicked tab
                         navTabs.forEach(t => t.classList.remove('active'));
                         this.classList.add('active');
                         
                         // Hide all content sections and show the target section
-                        if (contentSections) {
-                            contentSections.forEach(section => {
+                        if (sections) {
+                            sections.forEach(section => {
                                 section.classList.remove('active');
                             });
                             
@@ -1234,14 +1282,6 @@
                             if (targetSectionElement) {
                                 targetSectionElement.classList.add('active');
                             }
-                        }
-                        
-                        // Scroll to top of the content section
-                        const contentSectionsContainer = document.querySelector('.content-sections');
-                        if (contentSectionsContainer) {
-                            contentSectionsContainer.scrollIntoView({
-                                behavior: 'smooth'
-                            });
                         }
                     });
                 });
