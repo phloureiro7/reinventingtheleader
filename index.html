@@ -1054,6 +1054,7 @@
             <div class="navigation-tabs">
                 <button class="nav-tab primary" data-section="purchase-section">Purchase</button>
                 <button class="nav-tab" data-section="authors-section">About the Authors</button>
+                <button class="nav-tab" data-section="podcasts-section">Podcasts</button>
                 <button class="nav-tab" data-section="events-section">Events</button>
             </div>
         </section>
@@ -1185,6 +1186,21 @@
         </div>
     </div>
 
+    <!-- Content Modal for Podcasts section -->
+    <div id="podcasts-modal" class="content-modal">
+        <div class="content-modal-inner">
+            <span class="content-close-button" id="close-podcasts">&times;</span>
+            <div class="content-section" id="podcasts-section">
+                <h2 class="section-title">Podcasts & Interviews</h2>
+                
+                <div class="coming-soon-message">
+                    <p>Our podcast appearances and interviews are currently being updated.</p>
+                    <p>Please check back soon for links to podcast episodes featuring the authors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Content Modal for Events section -->
     <div id="events-modal" class="content-modal">
         <div class="content-modal-inner">
@@ -1366,11 +1382,13 @@
             // Modal elements
             const purchaseModal = document.getElementById('purchase-modal');
             const authorsModal = document.getElementById('authors-modal');
+            const podcastsModal = document.getElementById('podcasts-modal');
             const eventsModal = document.getElementById('events-modal');
 
             // Close buttons
             const closePurchase = document.getElementById('close-purchase');
             const closeAuthors = document.getElementById('close-authors');
+            const closePodcasts = document.getElementById('close-podcasts');
             const closeEvents = document.getElementById('close-events');
 
             // Country select
@@ -1437,6 +1455,8 @@
                             purchaseModal.style.display = 'block';
                         } else if (targetSection === 'authors-section' && authorsModal) {
                             authorsModal.style.display = 'block';
+                        } else if (targetSection === 'podcasts-section' && podcastsModal) {
+                            podcastsModal.style.display = 'block';
                         } else if (targetSection === 'events-section' && eventsModal) {
                             eventsModal.style.display = 'block';
                         }
@@ -1471,6 +1491,19 @@
                 });
             }
 
+            if (closePodcasts && podcastsModal) {
+                closePodcasts.addEventListener('click', function() {
+                    podcastsModal.style.display = 'none';
+                    
+                    // Reset tab active state
+                    navTabs.forEach(t => {
+                        if (t.getAttribute('data-section') !== 'podcasts-section') {
+                            t.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            
             if (closeEvents && eventsModal) {
                 closeEvents.addEventListener('click', function () {
                     eventsModal.style.display = 'none';
@@ -1492,6 +1525,9 @@
                 } else if (event.target === authorsModal) {
                     authorsModal.style.display = 'none';
                     resetActiveTab('authors-section');
+                } else if (event.target === podcastsModal) {
+                    podcastsModal.style.display = 'none';
+                    resetActiveTab('podcasts-section');
                 } else if (event.target === eventsModal) {
                     eventsModal.style.display = 'none';
                     resetActiveTab('events-section');
@@ -1532,6 +1568,9 @@
                     } else if (authorsModal && authorsModal.style.display === 'block') {
                         authorsModal.style.display = 'none';
                         resetActiveTab('authors-section');
+                    } else if (podcastsModal && podcastsModal.style.display === 'block') {
+                        podcastsModal.style.display = 'none';
+                        resetActiveTab('podcasts-section');
                     } else if (eventsModal && eventsModal.style.display === 'block') {
                         eventsModal.style.display = 'none';
                         resetActiveTab('events-section');
