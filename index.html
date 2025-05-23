@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reinventing the Leader</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -16,7 +18,7 @@
             color: white;
             overflow-x: hidden;
         }
-        
+
         /* Splash Screen */
         .splash-screen {
             position: fixed;
@@ -29,9 +31,10 @@
             align-items: center;
             z-index: 1000;
             transition: transform 0.8s ease-in-out;
-            background-color: #e41e26; /* Add solid background */
+            background-color: #e41e26;
+            /* Add solid background */
         }
-        
+
         .splash-content {
             position: relative;
             width: 100%;
@@ -41,7 +44,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         #animated-title {
             font-size: 4.2rem;
             font-weight: 200;
@@ -50,7 +53,7 @@
             opacity: 1;
             position: relative;
         }
-        
+
         .progress-bar {
             margin-top: 20px;
             width: 150px;
@@ -59,18 +62,18 @@
             opacity: 0;
             transition: opacity 0.5s;
         }
-        
+
         .progress-indicator {
             height: 100%;
             width: 0;
             background-color: white;
             transition: width 0.1s linear;
         }
-        
+
         .hide-splash {
             transform: translateY(-100%);
         }
-        
+
         /* Main Content */
         .main-content {
             min-height: 100vh;
@@ -78,11 +81,11 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        
+
         .main-content.visible {
             opacity: 1;
         }
-        
+
         /* Book Cover Layout */
         .book-cover {
             min-height: 100vh;
@@ -90,33 +93,33 @@
             padding: 40px;
             box-sizing: border-box;
         }
-        
+
         .title-area {
             max-width: 1200px;
             margin: 0 auto;
             padding-top: 60px;
         }
-        
+
         .authors {
             position: absolute;
             top: 60px;
             left: 40px;
             text-align: left;
         }
-        
+
         .author {
             font-size: 1.5rem;
             font-weight: 300;
             margin: 0 0 5px 0;
         }
-        
+
         .author-title {
             font-size: 1rem;
             font-weight: 300;
             margin: 0 0 20px 0;
             opacity: 0.9;
         }
-        
+
         .subtitle {
             position: absolute;
             top: 40%;
@@ -124,41 +127,41 @@
             text-align: left;
             max-width: 500px;
         }
-        
+
         .subtitle p {
             font-size: 1.8rem;
             font-weight: 300;
             line-height: 1.3;
             margin: 0;
         }
-        
+
         .foreword {
             position: absolute;
             bottom: 150px;
             left: 40px;
             text-align: left;
         }
-        
+
         .foreword p {
             margin: 0;
         }
-        
+
         .foreword .by {
             font-size: 1rem;
             font-weight: 300;
         }
-        
+
         .foreword .name {
             font-size: 1.2rem;
             font-weight: 400;
         }
-        
+
         .foreword .title {
             font-size: 0.8rem;
             font-weight: 300;
             opacity: 0.9;
         }
-        
+
         .navigation-tabs {
             position: absolute;
             bottom: 40px;
@@ -166,7 +169,7 @@
             display: flex;
             gap: 10px;
         }
-        
+
         .nav-tab {
             padding: 10px 25px;
             background-color: transparent;
@@ -178,26 +181,26 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .nav-tab.primary {
             background-color: white;
             color: #e41e26;
         }
-        
+
         .nav-tab:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         .nav-tab.primary:hover {
             background-color: rgba(255, 255, 255, 0.9);
         }
-        
+
         .nav-tab.active {
             background-color: rgba(255, 255, 255, 0.3);
             font-weight: 500;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
-        
+
         /* Content Modal - For all non-purchase tabs */
         .content-modal {
             display: none;
@@ -211,7 +214,7 @@
             backdrop-filter: blur(5px);
             overflow-y: auto;
         }
-        
+
         .content-modal-inner {
             background-color: #e41e26;
             margin: 5% auto;
@@ -224,7 +227,7 @@
             overflow-y: auto;
             border-radius: 0;
         }
-        
+
         .content-close-button {
             color: white;
             float: right;
@@ -234,29 +237,29 @@
             margin-top: -15px;
             margin-right: -15px;
         }
-        
+
         .content-close-button:hover {
             color: rgba(255, 255, 255, 0.8);
         }
-        
+
         /* Testimonials Section */
         .testimonials {
             background-color: #e41e26;
             padding: 60px 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .testimonials-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .testimonial {
             margin-bottom: 40px;
             position: relative;
             padding-left: 20px;
         }
-        
+
         .testimonial::before {
             content: '"';
             position: absolute;
@@ -265,42 +268,47 @@
             font-size: 2rem;
             line-height: 1;
         }
-        
+
         .testimonial-content {
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 10px;
         }
-        
+
         .testimonial-content em {
             font-style: italic;
             font-weight: 400;
         }
-        
+
         .testimonial-author {
             font-weight: 600;
             font-size: 1rem;
             text-transform: uppercase;
             margin: 0;
         }
-        
+
         .testimonial-title {
             font-size: 0.9rem;
             font-weight: 300;
             margin: 0;
             font-style: italic;
         }
-        
+
         /* Content Sections */
         .content-section {
             animation: fadeIn 0.5s ease-in-out;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         .section-title {
             color: white;
             font-size: 2.2rem;
@@ -309,7 +317,7 @@
             text-align: center;
             position: relative;
         }
-        
+
         .section-title:after {
             content: '';
             position: absolute;
@@ -328,7 +336,7 @@
             gap: 40px;
             margin-bottom: 40px;
         }
-        
+
         .author-profile {
             display: flex;
             background-color: rgba(255, 255, 255, 0.05);
@@ -336,7 +344,7 @@
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .author-image-container {
             width: 150px;
             min-width: 150px;
@@ -345,53 +353,53 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .author-image {
             width: 150px;
             height: 200px;
             background-position: center;
             background-size: cover;
         }
-        
-       .gui-photo {
-       background-image: url('Gui.jpg');
-       background-position: top center;
-       background-size: cover;
-       }
 
-.carlos-photo {
-background-image: url('Carlos.jpg');
-background-position: top center;
-background-size: cover;
-}
-        
-       
-        
+        .gui-photo {
+            background-image: url('Gui.jpg');
+            background-position: top center;
+            background-size: cover;
+        }
+
+        .carlos-photo {
+            background-image: url('Carlos.jpg');
+            background-position: top center;
+            background-size: cover;
+        }
+
+
+
         .author-bio {
             padding: 20px;
             flex-grow: 1;
         }
-        
+
         .author-name {
             font-size: 1.5rem;
             font-weight: 400;
             margin-top: 0;
             margin-bottom: 5px;
         }
-        
+
         .author-title {
             font-size: 1rem;
             opacity: 0.9;
             margin-top: 0;
             margin-bottom: 15px;
         }
-        
+
         .author-description p {
             font-size: 0.95rem;
             line-height: 1.5;
             margin-bottom: 15px;
         }
-        
+
         .about-foreword {
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 6px;
@@ -399,26 +407,26 @@ background-size: cover;
             margin-bottom: 40px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .foreword-heading {
             font-size: 1.3rem;
             font-weight: 400;
             margin-top: 0;
             margin-bottom: 5px;
         }
-        
+
         .foreword-title {
             font-size: 0.9rem;
             opacity: 0.9;
             margin-top: 0;
             margin-bottom: 15px;
         }
-        
+
         .foreword-excerpt {
             font-style: italic;
             line-height: 1.5;
         }
-        
+
         .coming-soon-message {
             text-align: center;
             padding: 60px 20px;
@@ -426,23 +434,24 @@ background-size: cover;
             border-radius: 6px;
             margin: 30px 0;
         }
-        
+
         .coming-soon-message p {
             font-size: 1.2rem;
             margin: 10px 0;
             opacity: 0.9;
         }
-        
+
         /* Barcode */
         .barcode-
-/* Barcode */
+
+        /* Barcode */
         .barcode-section {
             text-align: center;
             margin: 40px auto;
             padding: 20px;
             max-width: 400px;
         }
-        
+
         .barcode-image {
             width: 100%;
             max-width: 300px;
@@ -451,21 +460,21 @@ background-size: cover;
             background-color: white;
             padding: 10px;
         }
-        
+
         .book-price {
             text-align: center;
             margin-top: 15px;
             font-size: 1.1rem;
             font-weight: 500;
         }
-        
+
         .book-isbn {
             text-align: center;
             margin-top: 5px;
             font-size: 0.8rem;
             opacity: 0.8;
         }
-        
+
         /* Events Section Styles */
         .events-list {
             display: flex;
@@ -473,7 +482,7 @@ background-size: cover;
             gap: 25px;
             margin-bottom: 40px;
         }
-        
+
         .event-card {
             background-color: rgba(255, 255, 255, 0.05);
             border-radius: 6px;
@@ -482,12 +491,12 @@ background-size: cover;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .event-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        
+
         .event-date {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -498,49 +507,49 @@ background-size: cover;
             min-width: 100px;
             text-align: center;
         }
-        
+
         .event-month {
             font-size: 1rem;
             font-weight: 500;
             text-transform: uppercase;
         }
-        
+
         .event-day {
             font-size: 2.2rem;
             font-weight: 600;
             line-height: 1;
             margin: 5px 0;
         }
-        
+
         .event-year {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        
+
         .event-details {
             padding: 20px;
             flex-grow: 1;
         }
-        
+
         .event-title {
             font-size: 1.3rem;
             font-weight: 500;
             margin-top: 0;
             margin-bottom: 10px;
         }
-        
+
         .event-location {
             font-size: 0.9rem;
             margin: 0 0 15px 0;
             opacity: 0.9;
         }
-        
+
         .event-description {
             font-size: 0.95rem;
             line-height: 1.5;
             margin-bottom: 15px;
         }
-        
+
         .event-register {
             display: inline-block;
             background-color: transparent;
@@ -552,16 +561,16 @@ background-size: cover;
             font-size: 0.9rem;
             transition: background-color 0.3s;
         }
-        
+
         .event-register:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         .more-events {
             text-align: center;
             margin-top: 20px;
         }
-        
+
         .more-events-button {
             display: inline-block;
             background-color: transparent;
@@ -576,11 +585,11 @@ background-size: cover;
             transition: background-color 0.3s;
             text-decoration: none;
         }
-        
+
         .more-events-button:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         /* Footer */
         footer {
             background-color: #e41e26;
@@ -589,7 +598,7 @@ background-size: cover;
             font-size: 0.8rem;
             opacity: 0.7;
         }
-        
+
         /* Purchase Modal */
         .modal {
             display: none;
@@ -603,7 +612,7 @@ background-size: cover;
             backdrop-filter: blur(5px);
             overflow-y: auto;
         }
-        
+
         .modal-content {
             background-color: #e41e26;
             margin: 5% auto;
@@ -616,7 +625,7 @@ background-size: cover;
             overflow-y: auto;
             border-radius: 0;
         }
-        
+
         .close-button {
             color: white;
             float: right;
@@ -626,16 +635,16 @@ background-size: cover;
             margin-top: -15px;
             margin-right: -15px;
         }
-        
+
         .close-button:hover {
             color: rgba(255, 255, 255, 0.8);
         }
-        
+
         /* Country Selection - Modern Sleek Style */
         .country-selection {
             margin-bottom: 40px;
         }
-        
+
         .country-label {
             display: block;
             color: white;
@@ -644,13 +653,13 @@ background-size: cover;
             font-weight: 300;
             letter-spacing: 0.5px;
         }
-        
+
         .country-select-container {
             position: relative;
             width: 100%;
             max-width: 560px;
         }
-        
+
         .country-select {
             width: 100%;
             appearance: none;
@@ -667,16 +676,16 @@ background-size: cover;
             outline: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .country-select:hover {
             background-color: rgba(255, 255, 255, 0.15);
         }
-        
+
         .country-select:focus {
             background-color: rgba(255, 255, 255, 0.2);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* Custom dropdown arrow */
         .select-arrow {
             position: absolute;
@@ -690,7 +699,7 @@ background-size: cover;
             border-top: 8px solid white;
             pointer-events: none;
         }
-        
+
         /* Style for dropdown options */
         .country-select option {
             background-color: #e41e26;
@@ -698,14 +707,14 @@ background-size: cover;
             padding: 15px;
             font-weight: 300;
         }
-        
+
         /* Retailer Options */
         .retailer-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 20px;
         }
-        
+
         .retailer {
             background-color: white;
             border-radius: 5px;
@@ -719,12 +728,12 @@ background-size: cover;
             height: 150px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .retailer:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
         .retailer-logo {
             height: 70px;
             display: flex;
@@ -733,39 +742,39 @@ background-size: cover;
             margin-bottom: 15px;
             width: 100%;
         }
-        
+
         .retailer-icon {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
         }
-        
+
         .retailer-icon .fa-icon {
             font-size: 2.5rem;
             color: #e41e26;
         }
-        
+
         .walmart-icon .fa-icon {
             font-size: 2.5rem;
         }
-        
+
         .amazon-icon .fa-icon {
             font-size: 3rem;
         }
-        
+
         .bn-icon .fa-icon {
             font-size: 2.8rem;
         }
-        
+
         .bam-icon .fa-icon {
             font-size: 2.8rem;
         }
-        
+
         .kobo-icon .fa-icon {
             font-size: 2.8rem;
         }
-        
+
         .retailer-link {
             display: inline-block;
             background-color: #e41e26;
@@ -778,23 +787,23 @@ background-size: cover;
             transition: background-color 0.2s;
             width: 80%;
         }
-        
+
         .retailer-link:hover {
             background-color: #c71a20;
         }
-        
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             #animated-title {
                 font-size: 2.8rem;
                 text-align: center;
             }
-            
+
             .book-cover {
                 min-height: auto;
                 padding-bottom: 120px;
             }
-            
+
             .authors {
                 position: relative;
                 top: auto;
@@ -802,7 +811,7 @@ background-size: cover;
                 text-align: left;
                 margin-top: 30px;
             }
-            
+
             .subtitle {
                 position: relative;
                 top: auto;
@@ -810,7 +819,7 @@ background-size: cover;
                 text-align: left;
                 margin-top: 30px;
             }
-            
+
             .foreword {
                 position: relative;
                 bottom: auto;
@@ -818,7 +827,7 @@ background-size: cover;
                 text-align: left;
                 margin-top: 30px;
             }
-            
+
             .navigation-tabs {
                 position: fixed;
                 bottom: 0;
@@ -832,7 +841,7 @@ background-size: cover;
                 z-index: 100;
                 box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
             }
-            
+
             .nav-tab {
                 flex: 1;
                 margin: 0 5px;
@@ -841,7 +850,7 @@ background-size: cover;
                 min-width: 0;
                 text-align: center;
             }
-            
+
             .content-modal-inner {
                 padding: 20px;
                 width: 95%;
@@ -849,46 +858,46 @@ background-size: cover;
                 margin: 10px auto;
                 max-height: 85vh;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .author-profile {
                 flex-direction: column;
             }
-            
+
             .author-image-container {
                 width: 100%;
                 height: 350px;
                 min-width: 100%;
             }
-            
+
             .author-image {
                 width: 100%;
                 height: 100%;
             }
-            
+
             .author-bio {
                 padding: 15px;
             }
-            
+
             .author-name {
                 font-size: 1.3rem;
             }
-            
+
             .testimonial-content {
                 font-size: 1rem;
             }
-            
+
             .testimonials {
                 padding: 40px 20px;
             }
-            
+
             .event-card {
                 flex-direction: column;
             }
-            
+
             .event-date {
                 padding: 15px;
                 flex-direction: row;
@@ -896,91 +905,92 @@ background-size: cover;
                 justify-content: space-between;
                 align-items: center;
             }
-            
+
             .event-day {
                 font-size: 1.8rem;
                 margin: 0;
             }
-            
+
             .modal-content {
                 padding: 20px;
                 width: 95%;
                 margin: 10px auto;
             }
-            
+
             .retailer-options {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-            
+
             .retailer {
                 height: 130px;
                 padding: 10px;
             }
-            
+
             .retailer-logo {
                 height: 50px;
                 margin-bottom: 10px;
             }
-            
+
             .retailer-link {
                 padding: 6px 10px;
                 font-size: 0.8rem;
             }
         }
-        
+
         @media (max-width: 480px) {
             #animated-title {
                 font-size: 2rem;
             }
-            
+
             .author {
                 font-size: 1.3rem;
             }
-            
+
             .author-title {
                 font-size: 0.9rem;
                 margin-bottom: 10px;
             }
-            
+
             .subtitle p {
                 font-size: 1.4rem;
             }
-            
+
             .foreword .name {
                 font-size: 1.1rem;
             }
-            
+
             .nav-tab {
                 font-size: 0.7rem;
                 padding: 8px 2px;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .country-label {
                 font-size: 1.1rem;
             }
-            
+
             .retailer-options {
                 grid-template-columns: 1fr;
             }
-            
+
             .testimonial-author {
                 font-size: 0.9rem;
             }
-            
+
             .testimonial-title {
                 font-size: 0.8rem;
             }
-            
+
             .author-image-container {
                 height: 280px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Splash Screen with Animated Title -->
     <div class="splash-screen" id="splash-screen">
@@ -991,7 +1001,7 @@ background-size: cover;
             </div>
         </div>
     </div>
-    
+
     <!-- Main Content (Initially Hidden) -->
     <div class="main-content" id="main-content">
         <!-- Book Cover Layout -->
@@ -999,86 +1009,112 @@ background-size: cover;
             <div class="title-area">
                 <!-- Title displayed during the animation only -->
             </div>
-            
+
             <div class="authors">
                 <p class="author">Guilherme Loureiro</p>
                 <p class="author-title">Regional CEO, Walmex</p>
                 <p class="author">Carlos E. Marin</p>
                 <p class="author-title">Executive Leadership Coach</p>
             </div>
-            
+
             <div class="subtitle">
                 <p>How to Change Yourself to Change Your Company</p>
             </div>
-            
+
             <div class="foreword">
                 <p class="by">Foreword by</p>
                 <p class="name">Dr. Marshall Goldsmith</p>
                 <p class="title">Thinkers50 World's #1 Executive Coach</p>
             </div>
-            
+
             <div class="navigation-tabs">
                 <button class="nav-tab primary" data-section="purchase-section">Purchase</button>
                 <button class="nav-tab" data-section="authors-section">About the Authors</button>
                 <button class="nav-tab" data-section="events-section">Events</button>
             </div>
         </section>
-        
+
         <!-- Testimonials Section -->
         <section class="testimonials">
             <div class="testimonials-container">
                 <div class="testimonial">
-                    <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He not only reinvented the Walmex business while also delivering results, but he also reinvented himself as a new kind of leader... What I love most about this story is how Gui, with the support of his executive coach Carlos Marin, flipped the view to start from the inside out... He tells this story with the honesty, vulnerability, and humanity that comes from a truly authentic voice. You won't finish this book without sharing my enormous respect for what he accomplished—and how."</p>
+                    <p class="testimonial-content">"Gui Loureiro has provided a textbook on leading through change. He
+                        not only reinvented the Walmex business while also delivering results, but he also reinvented
+                        himself as a new kind of leader... What I love most about this story is how Gui, with the
+                        support of his executive coach Carlos Marin, flipped the view to start from the inside out... He
+                        tells this story with the honesty, vulnerability, and humanity that comes from a truly authentic
+                        voice. You won't finish this book without sharing my enormous respect for what he
+                        accomplished—and how."</p>
                     <p class="testimonial-author">Doug McMilllon</p>
                     <p class="testimonial-title">President and CEO, Walmart</p>
                 </div>
-                
+
                 <div class="testimonial">
-                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is an inspiring account of the magic that can happen when a leader realizes they must undergo their own transformation in order to transform their organization. Entertaining and relevant, the book includes personal insights from both authors while showing the pivotal role that trust plays in the leader/coach relationship. Gui and Carlos have written an honest, vulnerable, and praiseworthy book that should be in the library of every leader and coach."</p>
+                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is an inspiring account of the magic
+                        that can happen when a leader realizes they must undergo their own transformation in order to
+                        transform their organization. Entertaining and relevant, the book includes personal insights
+                        from both authors while showing the pivotal role that trust plays in the leader/coach
+                        relationship. Gui and Carlos have written an honest, vulnerable, and praiseworthy book that
+                        should be in the library of every leader and coach."</p>
                     <p class="testimonial-author">Ken Blanchard</p>
-                    <p class="testimonial-title">Bestselling Coauthor, The One Minute Manager and Simple Truths of Leadership</p>
+                    <p class="testimonial-title">Bestselling Coauthor, The One Minute Manager and Simple Truths of
+                        Leadership</p>
                 </div>
-                
+
                 <div class="testimonial">
-                    <p class="testimonial-content">"Written with welcome clarity, this business narrative grabs you from the first page. Highly recommended for leaders and for coaches."</p>
+                    <p class="testimonial-content">"Written with welcome clarity, this business narrative grabs you from
+                        the first page. Highly recommended for leaders and for coaches."</p>
                     <p class="testimonial-author">Sally Helgesen</p>
                     <p class="testimonial-title">Author, How Women Rise, Rising Together, and The Female Advantage</p>
                 </div>
-                
+
                 <div class="testimonial">
-                    <p class="testimonial-content">"A master class in leader growth and learning. It's a unique, behind-the-scenes look into one leader's efforts to transform a business and a coach's reflections on leader reinvention. With vulnerability, humility, and transparency, Gui Loureiro and Carlos Marin reveal workplace change through two distinct perspectives—the leader's and the coach's—enabling the reader to appreciate how the leader/coach partnership works."</p>
+                    <p class="testimonial-content">"A master class in leader growth and learning. It's a unique,
+                        behind-the-scenes look into one leader's efforts to transform a business and a coach's
+                        reflections on leader reinvention. With vulnerability, humility, and transparency, Gui Loureiro
+                        and Carlos Marin reveal workplace change through two distinct perspectives—the leader's and the
+                        coach's—enabling the reader to appreciate how the leader/coach partnership works."</p>
                     <p class="testimonial-author">Jim Kouzes</p>
-                    <p class="testimonial-title">Bestselling Coauthor, The Leadership Challenge, and Fellow, Dean Institute for New Leaders, Rice University</p>
+                    <p class="testimonial-title">Bestselling Coauthor, The Leadership Challenge, and Fellow, Dean
+                        Institute for New Leaders, Rice University</p>
                 </div>
-                
+
                 <div class="testimonial">
-                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is among the most compelling business leadership books I've read in a long time. It's exceedingly rare when both the dynamic CEO of a huge, iconic retail business and his seasoned executive coach tell all about the dreams and fears they shared before, during, and after a major transformation of the business, which had to succeed and from which there was no turning back... In these turbulent times, I can't imagine more relevant reading for all current and aspiring leaders!"</p>
+                    <p class="testimonial-content">"<em>Reinventing the Leader</em> is among the most compelling
+                        business leadership books I've read in a long time. It's exceedingly rare when both the dynamic
+                        CEO of a huge, iconic retail business and his seasoned executive coach tell all about the dreams
+                        and fears they shared before, during, and after a major transformation of the business, which
+                        had to succeed and from which there was no turning back... In these turbulent times, I can't
+                        imagine more relevant reading for all current and aspiring leaders!"</p>
                     <p class="testimonial-author">John Alexander</p>
-                    <p class="testimonial-title">President, Leadership Horizons, and former President and CEO, Center for Creative Leadership</p>
+                    <p class="testimonial-title">President, Leadership Horizons, and former President and CEO, Center
+                        for Creative Leadership</p>
                 </div>
-                
+
                 <div class="barcode-section">
                     <div class="book-price">US $32.00 / $43.00 CAN</div>
                     <div class="book-isbn">ISBN: 978-1-637746-80-6</div>
                     <img src="data:image/png;base64,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
-<img class="barcode-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARYAAABXCAIAAADUiWVPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEgAACxIB0t1+/AAAA71JREFUeF7tnM1rXVUUxc94m0GFahUxk9apdFCloEUQpIJaJehEcVSoHdWZIJ3USRUkYIf+BxJFMCAiEkG0Mx/SQW0nfaqDYhurQqvSxlJrY6NcWdcHJSZvv3322XufH4vJqYT7BmfnnLN8Z+dNGBgYSIwxPjqMJ93Ks66lK0Z2Xeuyq/8yc/oNVx0NV9j97X2oQQ3XBP+FnXbYt+8M9X5lh9ULO63yx0FU7d0b3vho19fXuupHqPb4xk/VQi5y/sbP61XUU4/6/nroGU0UDf+FnXbYt+8M9X5lh9ULO63vH1g0jf/OzxffWRi+cPrUkTfuoLruRtcpVNVU1SfH3rq0b2f1z0tnFp9A3Xd3N59GHeu6hdp3VzfvRK1+4tqBF/vUzn+hj+fgY9++M1T5lR04rbWwkyp8FEV90oCO6o0Hjl49tmfmyulXtiweeXPo0sl33v8PVdQXR56/9Pqe+UsrJz+aRB199cNf9j4zt3N78bWRK+OfP4wa/6Tb6PpUB61T9XtQe+5pNl5G7bitoYPqi3a9hF2wZsHHvn1nqPIrO3BabeGnhU8bVvPxdx+eTXBGKzpZRd3v7kGtFXKx4y68YUUlXSejgmfYvjNU+ZUdOK22sNMqfNSPqrKuE6jVKY00QYNlcRbXv96Jqi7NTL96fHP93JsoCxsf3LT59Zkz6ODouesjz6FO7r/5DGp4c/0c6uTY5rn9W96fPvg2yuwDz7cYqZbvQ99Hs+BH6a/sTFC9iVAd2YmqSFkpN2vxDWGjamXVUu2hTm4Pvj+3NNfntz+H3U/+iGpq4QFUdeQIKql5fjnwXP9/GKlzWc70XHwsxD7ODZ8Z6vxKDpzWYJlGKzVR1VmJVfW4umZRB+/nVFrFpM5d1GJR/+OL+x6tPuK/3L4DtbiU/Q11xD3A/4eRbi7b1nGQfJwbPjPU+ZUcOK22oDUXqRMVDRbXN7euLn2G+vK7lS+G2vOf7Z3+dm7/m+jgxXrvK9SRkXs/uYVq6tQj1T/NV9/G+HL0MVSXjTcn3hppHm9O3jVV9dAno4NdNJq1KQ/3YPf65xKqdLs5GQVfnxt+M1T6lR04rcEyjVbUVmRWVVSiyqOa6lfVYaP+xZWrM9Or5z5H7XvyY9TZ8btmUAfnq1Wo9fk7Pj+4evb0x+hgpL5Vb1OoNmbU//PLx1Bl1WGpDtpK1E6XifJDNWChZuBz3/CdodKv5MBprYadVOkjAAAAaSOMMd4MI0kQBP8DQVUPYSYZaKUAAAAASUVORK5CYII=" alt="Barcode">
+<img class=" barcode-image"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARYAAABXCAIAAADUiWVPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEgAACxIB0t1+/AAAA71JREFUeF7tnM1rXVUUxc94m0GFahUxk9apdFCloEUQpIJaJehEcVSoHdWZIJ3USRUkYIf+BxJFMCAiEkG0Mx/SQW0nfaqDYhurQqvSxlJrY6NcWdcHJSZvv3322XufH4vJqYT7BmfnnLN8Z+dNGBgYSIwxPjqMJ93Ks66lK0Z2Xeuyq/8yc/oNVx0NV9j97X2oQQ3XBP+FnXbYt+8M9X5lh9ULO63yx0FU7d0b3vho19fXuupHqPb4xk/VQi5y/sbP61XUU4/6/nroGU0UDf+FnXbYt+8M9X5lh9ULO63vH1g0jf/OzxffWRi+cPrUkTfuoLruRtcpVNVU1SfH3rq0b2f1z0tnFp9A3Xd3N59GHeu6hdp3VzfvRK1+4tqBF/vUzn+hj+fgY9++M1T5lR04rbWwkyp8FEV90oCO6o0Hjl49tmfmyulXtiweeXPo0sl33v8PVdQXR56/9Pqe+UsrJz+aRB199cNf9j4zt3N78bWRK+OfP4wa/6Tb6PpUB61T9XtQe+5pNl5G7bitoYPqi3a9hF2wZsHHvn1nqPIrO3BabeGnhU8bVvPxdx+eTXBGKzpZRd3v7kGtFXKx4y68YUUlXSejgmfYvjNU+ZUdOK22sNMqfNSPqrKuE6jVKY00QYNlcRbXv96Jqi7NTL96fHP93JsoCxsf3LT59Zkz6ODouesjz6FO7r/5DGp4c/0c6uTY5rn9W96fPvg2yuwDz7cYqZbvQ99Hs+BH6a/sTFC9iVAd2YmqSFkpN2vxDWGjamXVUu2hTm4Pvj+3NNfntz+H3U/+iGpq4QFUdeQIKql5fjnwXP9/GKlzWc70XHwsxD7ODZ8Z6vxKDpzWYJlGKzVR1VmJVfW4umZRB+/nVFrFpM5d1GJR/+OL+x6tPuK/3L4DtbiU/Q11xD3A/4eRbi7b1nGQfJwbPjPU+ZUcOK22oDUXqRMVDRbXN7euLn2G+vK7lS+G2vOf7Z3+dm7/m+jgxXrvK9SRkXs/uYVq6tQj1T/NV9/G+HL0MVSXjTcn3hppHm9O3jVV9dAno4NdNJq1KQ/3YPf65xKqdLs5GQVfnxt+M1T6lR04rcEyjVbUVmRWVVSiyqOa6lfVYaP+xZWrM9Or5z5H7XvyY9TZ8btmUAfnq1Wo9fk7Pj+4evb0x+hgpL5Vb1OoNmbU//PLx1Bl1WGpDtpK1E6XifJDNWChZuBz3/CdodKv5MBprYadVOkjAAAAaSOMMd4MI0kQBP8DQVUPYSYZaKUAAAAASUVORK5CYII="
+                        alt="Barcode">
                 </div>
             </div>
         </section>
-        
+
         <!-- Footer -->
         <footer>
             <p>&copy; 2025 Guilherme Loureiro & Carlos E. Marin. All rights reserved.</p>
         </footer>
     </div>
-    
+
     <!-- Content Modal for Authors section -->
     <div id="authors-modal" class="content-modal">
         <div class="content-modal-inner">
             <span class="content-close-button" id="close-authors">&times;</span>
             <div class="content-section" id="authors-section">
                 <h2 class="section-title">About the Authors</h2>
-                
+
                 <div class="author-profiles">
                     <div class="author-profile">
                         <div class="author-image-container">
@@ -1088,12 +1124,17 @@ background-size: cover;
                             <h3 class="author-name">Guilherme Loureiro</h3>
                             <p class="author-title">Regional CEO, Walmex</p>
                             <div class="author-description">
-                                <p>Guilherme Loureiro is the regional CEO of Walmex (Walmart Mexico and Central America), where he has led a remarkable business transformation by first transforming his own leadership approach.</p>
-                                <p>Prior to joining Walmart, Guilherme held executive positions at leading global companies in the consumer goods and retail sectors. His journey of personal and professional transformation has positioned him as a thought leader in modern executive leadership.</p>
+                                <p>Guilherme Loureiro is the regional CEO of Walmex (Walmart Mexico and Central
+                                    America), where he has led a remarkable business transformation by first
+                                    transforming his own leadership approach.</p>
+                                <p>Prior to joining Walmart, Guilherme held executive positions at leading global
+                                    companies in the consumer goods and retail sectors. His journey of personal and
+                                    professional transformation has positioned him as a thought leader in modern
+                                    executive leadership.</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="author-profile">
                         <div class="author-image-container">
                             <div class="author-image carlos-photo"></div>
@@ -1102,31 +1143,38 @@ background-size: cover;
                             <h3 class="author-name">Carlos E. Marin</h3>
                             <p class="author-title">Executive Leadership Coach</p>
                             <div class="author-description">
-                                <p>Carlos E. Marin is an executive leadership coach with over two decades of experience helping senior executives and their teams achieve transformational results.</p>
-                                <p>His coaching methodology combines proven psychological principles with practical business acumen to help leaders unlock their potential. Carlos has worked with executives at Fortune 500 companies across multiple industries, helping them navigate change and drive organizational success.</p>
+                                <p>Carlos E. Marin is an executive leadership coach with over two decades of experience
+                                    helping senior executives and their teams achieve transformational results.</p>
+                                <p>His coaching methodology combines proven psychological principles with practical
+                                    business acumen to help leaders unlock their potential. Carlos has worked with
+                                    executives at Fortune 500 companies across multiple industries, helping them
+                                    navigate change and drive organizational success.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="about-foreword">
                     <h3 class="foreword-heading">Foreword by Dr. Marshall Goldsmith</h3>
                     <p class="foreword-title">Thinkers50 World's #1 Executive Coach</p>
                     <div class="foreword-excerpt">
-                        <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership transformation that is both deeply personal and broadly applicable. They show that true organizational change begins with personal change—a lesson that every leader needs to embrace."</p>
+                        <p>"In this compelling book, Guilherme and Carlos take you on a journey of leadership
+                            transformation that is both deeply personal and broadly applicable. They show that true
+                            organizational change begins with personal change—a lesson that every leader needs to
+                            embrace."</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Content Modal for Events section -->
     <div id="events-modal" class="content-modal">
         <div class="content-modal-inner">
             <span class="content-close-button" id="close-events">&times;</span>
             <div class="content-section" id="events-section">
                 <h2 class="section-title">Upcoming Events</h2>
-                
+
                 <div class="coming-soon-message">
                     <p>Our events calendar is currently being updated.</p>
                     <p>Please check back soon for upcoming book tours and speaking engagements.</p>
@@ -1134,12 +1182,12 @@ background-size: cover;
             </div>
         </div>
     </div>
-    
+
     <!-- Purchase Modal -->
     <div id="purchase-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="close-purchase">&times;</span>
-            
+
             <div class="country-selection">
                 <label for="country-select" class="country-label">Select your country</label>
                 <div class="country-select-container">
@@ -1154,7 +1202,7 @@ background-size: cover;
                     <div class="select-arrow"></div>
                 </div>
             </div>
-            
+
             <div id="us-retailers" class="retailer-options">
                 <div class="retailer">
                     <div class="retailer-logo">
@@ -1162,129 +1210,135 @@ background-size: cover;
                             <i class="fa-solid fa-store fa-icon"></i>
                         </span>
                     </div>
-                    <a href="https://www.walmart.com/ip/Gui-Loureiro-Reinventing-the-Leader-How-to-Change-Yourself-to-Change-Your-Company-Hardcover-9781637746806/13650753417?classType=REGULAR&from=/search" class="retailer-link" target="_blank">Buy at Walmart</a>
+                    <a href="https://www.walmart.com/ip/Gui-Loureiro-Reinventing-the-Leader-How-to-Change-Yourself-to-Change-Your-Company-Hardcover-9781637746806/13650753417?classType=REGULAR&from=/search"
+                        class="retailer-link" target="_blank">Buy at Walmart</a>
                 </div>
-            
+
                 <div class="retailer">
                     <div class="retailer-logo">
                         <span class="retailer-icon amazon-icon">
                             <i class="fa-brands fa-amazon fa-icon"></i>
                         </span>
                     </div>
-                    <a href="https://www.amazon.com/Reinventing-Leader-Change-Yourself-Company/dp/1637746806/" class="retailer-link" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.amazon.com/Reinventing-Leader-Change-Yourself-Company/dp/1637746806/"
+                        class="retailer-link" target="_blank">Buy on Amazon</a>
                 </div>
-                
+
                 <div class="retailer">
                     <div class="retailer-logo">
                         <span class="retailer-icon bn-icon">
                             <i class="fa-solid fa-book fa-icon"></i>
                         </span>
                     </div>
-                    <a href="https://www.barnesandnoble.com/w/reinventing-the-leader-guilherme-loureiro/1142750160" class="retailer-link" target="_blank">Buy at Barnes & Noble</a>
+                    <a href="https://www.barnesandnoble.com/w/reinventing-the-leader-guilherme-loureiro/1142750160"
+                        class="retailer-link" target="_blank">Buy at Barnes & Noble</a>
                 </div>
-                
+
                 <div class="retailer">
                     <div class="retailer-logo">
                         <span class="retailer-icon bam-icon">
                             <i class="fa-solid fa-book-open fa-icon"></i>
                         </span>
                     </div>
-                    <a href="https://www.booksamillion.com/p/Reinventing-Leader/Guilherme-Loureiro/9781637746806" class="retailer-link" target="_blank">Buy at BAM!</a>
+                    <a href="https://www.booksamillion.com/p/Reinventing-Leader/Guilherme-Loureiro/9781637746806"
+                        class="retailer-link" target="_blank">Buy at BAM!</a>
                 </div>
-                
+
                 <div class="retailer">
                     <div class="retailer-logo">
                         <span class="retailer-icon kobo-icon">
                             <i class="fa-solid fa-tablet-screen-button fa-icon"></i>
                         </span>
                     </div>
-                    <a href="https://www.kobo.com/us/en/ebook/reinventing-the-leader" class="retailer-link" target="_blank">Buy on Kobo</a>
+                    <a href="https://www.kobo.com/us/en/ebook/reinventing-the-leader" class="retailer-link"
+                        target="_blank">Buy on Kobo</a>
                 </div>
             </div>
-            
+
             <div id="ca-retailers" class="retailer-options" style="display: none;">
                 <!-- Placeholder for Canadian retailers - to be added later -->
                 <p style="color: white; text-align: center; grid-column: 1 / -1;">Canadian retailers coming soon!</p>
             </div>
-            
+
             <div id="uk-retailers" class="retailer-options" style="display: none;">
                 <!-- Placeholder for UK retailers - to be added later -->
                 <p style="color: white; text-align: center; grid-column: 1 / -1;">UK retailers coming soon!</p>
             </div>
-            
+
             <div id="au-retailers" class="retailer-options" style="display: none;">
                 <!-- Placeholder for Australian retailers - to be added later -->
                 <p style="color: white; text-align: center; grid-column: 1 / -1;">Australian retailers coming soon!</p>
             </div>
-            
+
             <div id="mx-retailers" class="retailer-options" style="display: none;">
                 <!-- Placeholder for Mexican retailers - to be added later -->
                 <p style="color: white; text-align: center; grid-column: 1 / -1;">Mexican retailers coming soon!</p>
             </div>
-            
+
             <div id="other-retailers" class="retailer-options" style="display: none;">
                 <!-- Placeholder for Other Countries retailers - to be added later -->
-                <p style="color: white; text-align: center; grid-column: 1 / -1;">International retailers coming soon!</p>
+                <p style="color: white; text-align: center; grid-column: 1 / -1;">International retailers coming soon!
+                </p>
             </div>
         </div>
     </div>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Get elements
             const titleElement = document.getElementById('animated-title');
             const progressBar = document.getElementById('progress-bar');
             const progressIndicator = document.getElementById('progress-indicator');
             const splashScreen = document.getElementById('splash-screen');
             const mainContent = document.getElementById('main-content');
-            
+
             // Navigation and content sections
             const navTabs = document.querySelectorAll('.nav-tab');
-            
+
             // Modal elements
             const purchaseModal = document.getElementById('purchase-modal');
             const authorsModal = document.getElementById('authors-modal');
             const eventsModal = document.getElementById('events-modal');
-            
+
             // Close buttons
             const closePurchase = document.getElementById('close-purchase');
             const closeAuthors = document.getElementById('close-authors');
             const closeEvents = document.getElementById('close-events');
-            
+
             // Country select
             const countrySelect = document.getElementById('country-select');
-            
+
             const text = "Reinventing the Leader";
-            
+
             // Clear any existing content in title element
             if (titleElement) {
                 titleElement.innerHTML = '';
-                
+
                 // Show progress bar
                 setTimeout(() => {
                     if (progressBar) progressBar.style.opacity = 1;
                 }, 500);
-                
+
                 // Start typing animation
                 let i = 0;
                 function typeWriter() {
                     if (i < text.length) {
                         titleElement.innerHTML += text.charAt(i);
                         i++;
-                        
+
                         // Update progress bar
                         if (progressIndicator) {
                             const progress = (i / text.length) * 100;
                             progressIndicator.style.width = progress + '%';
                         }
-                        
+
                         setTimeout(typeWriter, 150);
                     } else {
                         // Animation complete - wait a moment before transition
                         setTimeout(() => {
                             // Hide splash screen with animation
                             if (splashScreen) splashScreen.classList.add('hide-splash');
-                            
+
                             // Show main content with fade-in
                             if (mainContent) {
                                 mainContent.style.display = 'block';
@@ -1295,21 +1349,21 @@ background-size: cover;
                         }, 500);
                     }
                 }
-                
+
                 // Start typing animation
                 setTimeout(typeWriter, 500);
             }
-            
+
             // Tab Navigation
             if (navTabs) {
                 navTabs.forEach(tab => {
-                    tab.addEventListener('click', function() {
+                    tab.addEventListener('click', function () {
                         const targetSection = this.getAttribute('data-section');
-                        
+
                         // Remove active class from all tabs and add to clicked tab
                         navTabs.forEach(t => t.classList.remove('active'));
                         this.classList.add('active');
-                        
+
                         // Open appropriate modal based on section
                         if (targetSection === 'purchase-section' && purchaseModal) {
                             purchaseModal.style.display = 'block';
@@ -1321,12 +1375,12 @@ background-size: cover;
                     });
                 });
             }
-            
+
             // Close modals when X is clicked
             if (closePurchase && purchaseModal) {
-                closePurchase.addEventListener('click', function() {
+                closePurchase.addEventListener('click', function () {
                     purchaseModal.style.display = 'none';
-                    
+
                     // Reset tab active state
                     navTabs.forEach(t => {
                         if (t.getAttribute('data-section') !== 'purchase-section') {
@@ -1335,11 +1389,11 @@ background-size: cover;
                     });
                 });
             }
-            
+
             if (closeAuthors && authorsModal) {
-                closeAuthors.addEventListener('click', function() {
+                closeAuthors.addEventListener('click', function () {
                     authorsModal.style.display = 'none';
-                    
+
                     // Reset tab active state
                     navTabs.forEach(t => {
                         if (t.getAttribute('data-section') !== 'authors-section') {
@@ -1348,11 +1402,11 @@ background-size: cover;
                     });
                 });
             }
-            
+
             if (closeEvents && eventsModal) {
-                closeEvents.addEventListener('click', function() {
+                closeEvents.addEventListener('click', function () {
                     eventsModal.style.display = 'none';
-                    
+
                     // Reset tab active state
                     navTabs.forEach(t => {
                         if (t.getAttribute('data-section') !== 'events-section') {
@@ -1361,9 +1415,9 @@ background-size: cover;
                     });
                 });
             }
-            
+
             // Close modals when clicking outside the modal content
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
                 if (event.target === purchaseModal) {
                     purchaseModal.style.display = 'none';
                     resetActiveTab('purchase-section');
@@ -1375,7 +1429,7 @@ background-size: cover;
                     resetActiveTab('events-section');
                 }
             });
-            
+
             function resetActiveTab(sectionId) {
                 navTabs.forEach(t => {
                     if (t.getAttribute('data-section') === sectionId) {
@@ -1383,15 +1437,15 @@ background-size: cover;
                     }
                 });
             }
-            
+
             // Handle country selection change
             if (countrySelect) {
-                countrySelect.addEventListener('change', function() {
+                countrySelect.addEventListener('change', function () {
                     // Hide all retailer sections
                     document.querySelectorAll('.retailer-options').forEach(section => {
                         section.style.display = 'none';
                     });
-                    
+
                     // Show the selected country's retailers
                     const selectedCountry = countrySelect.value;
                     const retailersSection = document.getElementById(`${selectedCountry}-retailers`);
@@ -1400,9 +1454,9 @@ background-size: cover;
                     }
                 });
             }
-            
+
             // Close modal on escape key
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
                     if (purchaseModal && purchaseModal.style.display === 'block') {
                         purchaseModal.style.display = 'none';
@@ -1419,4 +1473,5 @@ background-size: cover;
         });
     </script>
 </body>
+
 </html>
