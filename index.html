@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             margin: 0;
             padding: 0;
@@ -17,6 +21,8 @@
             background-color: #e41e26;
             color: white;
             overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         /* Splash Screen */
@@ -218,8 +224,8 @@
         .content-modal-inner {
             background-color: #e41e26;
             margin: 5% auto;
-            padding: 40px;
-            width: 90%;
+            padding: 20px;
+            width: 95%;
             max-width: 1000px;
             border: none;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -357,7 +363,7 @@
         .author-image {
             width: 150px;
             height: 200px;
-            background-position: center;
+            background-position: top center;
             background-size: cover;
         }
 
@@ -452,14 +458,14 @@
             max-width: 400px;
         }
 
-        .barcode-image {
+        /* .barcode-image {
             width: 100%;
             max-width: 300px;
             margin: 0 auto;
             display: block;
             background-color: white;
             padding: 10px;
-        }
+        } */
 
         .book-price {
             text-align: center;
@@ -801,7 +807,7 @@
 
             .book-cover {
                 min-height: auto;
-                padding-bottom: 120px;
+                padding: 20px 15px 120px;
             }
 
             .authors {
@@ -818,6 +824,8 @@
                 left: auto;
                 text-align: left;
                 margin-top: 30px;
+                max-width: 100%;
+                padding-right: 15px;
             }
 
             .foreword {
@@ -834,21 +842,27 @@
                 left: 0;
                 right: 0;
                 margin: 0;
-                padding: 10px;
-                background-color: rgba(228, 30, 38, 0.9);
+                padding: 10px 5px;
+                background-color: rgba(228, 30, 38, 0.95);
                 backdrop-filter: blur(10px);
                 justify-content: space-around;
                 z-index: 100;
                 box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+                width: 100%;
+                max-width: 100vw;
             }
 
             .nav-tab {
                 flex: 1;
-                margin: 0 5px;
-                padding: 10px 5px;
-                font-size: 0.75rem;
+                margin: 0 3px;
+                padding: 10px 4px;
+                font-size: 0.7rem;
                 min-width: 0;
                 text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                border-radius: 3px;
             }
 
             .content-modal-inner {
@@ -869,8 +883,9 @@
 
             .author-image-container {
                 width: 100%;
-                height: 350px;
+                height: 320px;
                 min-width: 100%;
+                max-height: 320px;
             }
 
             .author-image {
@@ -1092,13 +1107,9 @@
                 </div>
 
                 <div class="barcode-section">
-                    <div class="book-price">US $32.00 / $43.00 CAN</div>
-                    <div class="book-isbn">ISBN: 978-1-637746-80-6</div>
-                    <img src="data:image/png;base64,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
-<img class=" barcode-image"
-                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARYAAABXCAIAAADUiWVPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEgAACxIB0t1+/AAAA71JREFUeF7tnM1rXVUUxc94m0GFahUxk9apdFCloEUQpIJaJehEcVSoHdWZIJ3USRUkYIf+BxJFMCAiEkG0Mx/SQW0nfaqDYhurQqvSxlJrY6NcWdcHJSZvv3322XufH4vJqYT7BmfnnLN8Z+dNGBgYSIwxPjqMJ93Ks66lK0Z2Xeuyq/8yc/oNVx0NV9j97X2oQQ3XBP+FnXbYt+8M9X5lh9ULO63yx0FU7d0b3vho19fXuupHqPb4xk/VQi5y/sbP61XUU4/6/nroGU0UDf+FnXbYt+8M9X5lh9ULO63vH1g0jf/OzxffWRi+cPrUkTfuoLruRtcpVNVU1SfH3rq0b2f1z0tnFp9A3Xd3N59GHeu6hdp3VzfvRK1+4tqBF/vUzn+hj+fgY9++M1T5lR04rbWwkyp8FEV90oCO6o0Hjl49tmfmyulXtiweeXPo0sl33v8PVdQXR56/9Pqe+UsrJz+aRB199cNf9j4zt3N78bWRK+OfP4wa/6Tb6PpUB61T9XtQe+5pNl5G7bitoYPqi3a9hF2wZsHHvn1nqPIrO3BabeGnhU8bVvPxdx+eTXBGKzpZRd3v7kGtFXKx4y68YUUlXSejgmfYvjNU+ZUdOK22sNMqfNSPqrKuE6jVKY00QYNlcRbXv96Jqi7NTL96fHP93JsoCxsf3LT59Zkz6ODouesjz6FO7r/5DGp4c/0c6uTY5rn9W96fPvg2yuwDz7cYqZbvQ99Hs+BH6a/sTFC9iVAd2YmqSFkpN2vxDWGjamXVUu2hTm4Pvj+3NNfntz+H3U/+iGpq4QFUdeQIKql5fjnwXP9/GKlzWc70XHwsxD7ODZ8Z6vxKDpzWYJlGKzVR1VmJVfW4umZRB+/nVFrFpM5d1GJR/+OL+x6tPuK/3L4DtbiU/Q11xD3A/4eRbi7b1nGQfJwbPjPU+ZUcOK22oDUXqRMVDRbXN7euLn2G+vK7lS+G2vOf7Z3+dm7/m+jgxXrvK9SRkXs/uYVq6tQj1T/NV9/G+HL0MVSXjTcn3hppHm9O3jVV9dAno4NdNJq1KQ/3YPf65xKqdLs5GQVfnxt+M1T6lR04rcEyjVbUVmRWVVSiyqOa6lfVYaP+xZWrM9Or5z5H7XvyY9TZ8btmUAfnq1Wo9fk7Pj+4evb0x+hgpL5Vb1OoNmbU//PLx1Bl1WGpDtpK1E6XifJDNWChZuBz3/CdodKv5MBprYadVOkjAAAAaSOMMd4MI0kQBP8DQVUPYSYZaKUAAAAASUVORK5CYII="
-                        alt="Barcode">
-                </div>
+    <div class="book-price">US $32.00 / $43.00 CAN</div>
+    <div class="book-isbn">ISBN: 978-1-637746-80-6</div>
+</div>
             </div>
         </section>
 
